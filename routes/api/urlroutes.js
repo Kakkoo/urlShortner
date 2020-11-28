@@ -31,9 +31,9 @@ router.post('/full-shortURL', (req, res) => {
   //         .save()
   //         .then((Url) => res.json(Url))
   //         .catch((err) => console.log("second last"));
-  Url.find({ number: req.body.number })
+  Url.findOne({ number: req.body.number })
     .then((data) => {
-      if (req.body.number === data[number]) {
+      if (data) {
         console.log(data);
         return res.status(400).json({ number: "Number already exists." });
       } else {
