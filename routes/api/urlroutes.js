@@ -34,7 +34,7 @@ Url.find({ number: req.body.number })
       });
       newUrl
         .save()
-        .then((newUrl) => res.json(newUrl))
+        .then((Url) => res.json(Url))
         .catch((err) => console.log("second last"));
     }
   })
