@@ -33,7 +33,7 @@ router.post('/full-shortURL', (req, res) => {
   //         .catch((err) => console.log("second last"));
   Url.find({ number: req.body.number })
     .then((data) => {
-      if (data) {
+      if (req.body.number === data.number) {
         console.log(data);
         return res.status(400).json({ number: "Number already exists." });
       } else {
