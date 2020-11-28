@@ -80,6 +80,8 @@ router.get("/short-fullURL", (req, res) => {
     .then((data) => {
       if (data) {
         (Url) => res.json(Url.fullurl);
+      }else{
+        console.log("data not found");
       }
     })
     .catch((err) => console.log(err));
