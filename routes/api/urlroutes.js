@@ -12,9 +12,33 @@ router.get("/test", (req, res) => res.json({ msg: "urlroutes works" }));
 router.post("/full-shortURL", (req, res) => {
   function rec() {
     let num = Math.floor(Math.random() * 1000);
+    return num;
+  }
+  let num = Math.floor(Math.random() * 1000);
     Url.findOne({ number: num }).then((data) => {
       if (data) {
-        rec();
+       let FULLURL = req.body.fullurl;
+       let NUM = rec();
+       const ALPHABET =
+         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+       BASE = ALPHABET.length;
+       let digits = [];
+       while (NUM >= 1) {
+         let remainder = NUM % BASE;
+         digits.push(ALPHABET.charAt(remainder));
+         NUM = NUM / BASE;
+       }
+       let shorturl = digits.reverse().join("");
+       const newUrl = new Url({
+         fullurl: FULLURL,
+         number: NUM,
+         shorturl: shorturl,
+       });
+       newUrl
+         .save()
+         .then((Url) => res.json(Url))
+         .catch((err) => console.log("second last"));
+        
       } else {
         let FULLURL = req.body.fullurl;
         let NUM = num;
@@ -39,7 +63,7 @@ router.post("/full-shortURL", (req, res) => {
           .catch((err) => console.log("second last"));
       }
     });
-  }
+  
 });
 
 module.exports = router;
