@@ -8,7 +8,7 @@ const UrlSchema = new Schema({
   },
   number: {
     type: Number,
-    required: true
+   
   },
   shorturl: {
     type: String
