@@ -9,7 +9,7 @@ router.get('/test', (req, res) => res.json({msg: 'urlroutes works'}));
 //@route POST /api/urlroutes/test
 //@desc  take full url then give back short url
 //@access Public
-router.post('full-shortURL', (req, res) => {
+router.post('/full-shortURL', (req, res) => {
 Url.findone({ number: req.body.number })
   .then((num) => {
     if (num) {
