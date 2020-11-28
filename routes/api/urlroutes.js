@@ -17,8 +17,9 @@ router.post("/full-shortURL", (req, res) => {
   let num = Math.floor(Math.random() * 1000);
     Url.findOne({ number: num }).then((data) => {
       if (data) {
+        let num = rec();
        let FULLURL = req.body.fullurl;
-       let NUM = rec();
+       let NUM = num;
        const ALPHABET =
          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
        BASE = ALPHABET.length;
@@ -31,7 +32,7 @@ router.post("/full-shortURL", (req, res) => {
        let shorturl = digits.reverse().join("");
        const newUrl = new Url({
          fullurl: FULLURL,
-         number: NUM,
+         number: num,
          shorturl: shorturl,
        });
        newUrl
@@ -54,7 +55,7 @@ router.post("/full-shortURL", (req, res) => {
         let shorturl = digits.reverse().join("");
         const newUrl = new Url({
           fullurl: FULLURL,
-          number: NUM,
+          number: num,
           shorturl: shorturl,
         });
         newUrl
