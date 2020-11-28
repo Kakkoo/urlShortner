@@ -6,7 +6,7 @@ const router = express.Router();
 //@desc  Tests urlroutes js
 //@access Public
 router.get("/test", (req, res) => res.json({ msg: "urlroutes works" }));
-//@route POST /api/urlroutes/test
+//@route POST /api/urlroutes/full-shortURL
 //@desc  take full url then give back short url
 //@access Public
 router.post("/full-shortURL", (req, res) => {
@@ -15,56 +15,74 @@ router.post("/full-shortURL", (req, res) => {
     return num;
   }
   let num = Math.floor(Math.random() * 1000);
-    Url.findOne({ number: num }).then((data) => {
-      if (data) {
-        let num = rec();
-       let FULLURL = req.body.fullurl;
-       let NUM = num;
-       const ALPHABET =
-         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-       BASE = ALPHABET.length;
-       let digits = [];
-       while (NUM >= 1) {
-         let remainder = NUM % BASE;
-         digits.push(ALPHABET.charAt(remainder));
-         NUM = NUM / BASE;
-       }
-       let shorturl = digits.reverse().join("");
-       const newUrl = new Url({
-         fullurl: FULLURL,
-         number: num,
-         shorturl: shorturl,
-       });
-       newUrl
-         .save()
-         .then((Url) => res.json(Url.shorturl))
-         .catch((err) => console.log("second last"));
-        
-      } else {
-        let FULLURL = req.body.fullurl;
-        let NUM = num;
-        const ALPHABET =
-          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        BASE = ALPHABET.length;
-        let digits = [];
-        while (NUM >= 1) {
-          let remainder = NUM % BASE;
-          digits.push(ALPHABET.charAt(remainder));
-          NUM = NUM / BASE;
-        }
-        let shorturl = digits.reverse().join("");
-        const newUrl = new Url({
-          fullurl: FULLURL,
-          number: num,
-          shorturl: shorturl,
-        });
-        newUrl
-          .save()
-          .then((Url) => res.json(Url.shorturl))
-          .catch((err) => console.log("second last"));
+  Url.findOne({ number: num }).then((data) => {
+    if (data) {
+      let num = rec();
+      let FULLURL = req.body.fullurl;
+      let NUM = num;
+      const ALPHABET =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      BASE = ALPHABET.length;
+      let digits = [];
+      while (NUM >= 1) {
+        let remainder = NUM % BASE;
+        digits.push(ALPHABET.charAt(remainder));
+        NUM = NUM / BASE;
       }
-    });
-  
+      let shorturl = digits.reverse().join("");
+      const newUrl = new Url({
+        fullurl: FULLURL,
+        number: num,
+        shorturl: shorturl,
+      });
+      newUrl
+        .save()
+        .then((Url) => res.json(Url.shorturl))
+        .catch((err) => console.log("second last"));
+    } else {
+      let FULLURL = req.body.fullurl;
+      let NUM = num;
+      const ALPHABET =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      BASE = ALPHABET.length;
+      let digits = [];
+      while (NUM >= 1) {
+        let remainder = NUM % BASE;
+        digits.push(ALPHABET.charAt(remainder));
+        NUM = NUM / BASE;
+      }
+      let shorturl = digits.reverse().join("");
+      const newUrl = new Url({
+        fullurl: FULLURL,
+        number: num,
+        shorturl: shorturl,
+      });
+      newUrl
+        .save()
+        .then((Url) => res.json(Url.shorturl))
+        .catch((err) => console.log("second last"));
+    }
+  });
+});
+//@route GET /api/urlroutes/short-fullurl
+//@desc  get fullurl by shorturl
+//@access Public
+router.get("/short-fullURL", (req, res) => {
+  const shorturl = req.body.shorturl;
+  const ALPHABET =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  BASE = ALPHABET.length;
+  let num = 0;
+  for (let i = 0; i < shorturl.length; i++) {
+    num = num * BASE + ALPHABET.indexOf(shorturl.charAt(i));
+  }
+  Url.findOne({ number: num })
+    .then((data) => {
+      if (data) {
+        (Url) => res.json(Url.fullurl);
+      }
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
