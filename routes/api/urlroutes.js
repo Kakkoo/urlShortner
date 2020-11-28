@@ -81,7 +81,7 @@ router.get("/short-fullURL", (req, res) => {
   Url.findOne({ number: num })
     .then((data) => {
       if (data) {
-        (Url) => res.json(Url.fullurl);
+        (data) => res.json(data.fullurl);
       }else{
         console.log("data not found");
       }
