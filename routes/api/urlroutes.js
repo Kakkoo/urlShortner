@@ -10,7 +10,7 @@ router.get('/test', (req, res) => res.json({msg: 'urlroutes works'}));
 //@desc  take full url then give back short url
 //@access Public
 router.post('/full-shortURL', (req, res) => {
-Url.findone({ number: req.body.number })
+Url.find({ number: req.body.number })
   .then((number) => {
     if (number) {
       return res.status(400).json({ number: "Number already exists." });
