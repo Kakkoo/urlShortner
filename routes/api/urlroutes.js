@@ -11,12 +11,12 @@ router.get('/test', (req, res) => res.json({msg: 'urlroutes works'}));
 //@access Public
 router.post('/full-shortURL', (req, res) => {
 Url.findone({ number: req.body.number })
-  .then((num) => {
-    if (num) {
+  .then((number) => {
+    if (number) {
       return res.status(400).json({ number: "Number already exists." });
     } else {
-      let FULLURL = req.body.fullurl;
-      let NUM = req.body.number;
+      const FULLURL = req.body.fullurl;
+      const NUM = req.body.number;
       const ALPHABET =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       BASE = ALPHABET.length;
@@ -34,11 +34,11 @@ Url.findone({ number: req.body.number })
       });
       newUrl
         .save()
-        .then((shorturl) => res.json(shorturl))
-        .catch((err) => console.log(err));
+        .then((newUrl) => res.json(newUrl))
+        .catch((err) => console.log("second last"));
     }
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("last"));
 })
 
 module.exports = router;
