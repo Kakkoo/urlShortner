@@ -9,6 +9,9 @@ const UrlSchema = new Schema({
   number: {
     type: Number,
     required: true
+  },
+  shorturl: {
+    type: String
   }
 });
 module.exports = Url = mongoose.model("urls", UrlSchema);
