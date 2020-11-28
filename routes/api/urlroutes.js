@@ -12,7 +12,7 @@ router.get('/test', (req, res) => res.json({msg: 'urlroutes works'}));
 router.post('/full-shortURL', (req, res) => {
 Url.find({ number: req.body.number })
   .then((data) => {
-    if (data) {
+    if (!data) {
       console.log(data);
       return res.status(400).json({ number: "Number already exists." });
     } else {
