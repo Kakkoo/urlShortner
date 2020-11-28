@@ -69,6 +69,7 @@ router.post("/full-shortURL", (req, res) => {
 //@access Public
 router.get("/short-fullURL", (req, res) => {
   const shorturl = req.body.shorturl;
+  console.log(shorturl);
   const ALPHABET =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   BASE = ALPHABET.length;
@@ -76,6 +77,7 @@ router.get("/short-fullURL", (req, res) => {
   for (let i = 0; i < shorturl.length; i++) {
     num = num * BASE + ALPHABET.indexOf(shorturl.charAt(i));
   }
+  console.log(num);
   Url.findOne({ number: num })
     .then((data) => {
       if (data) {
