@@ -37,7 +37,7 @@ router.post("/full-shortURL", (req, res) => {
        });
        newUrl
          .save()
-         .then((Url) => res.json(Url))
+         .then((Url) => res.json(Url.shorturl))
          .catch((err) => console.log("second last"));
         
       } else {
@@ -60,7 +60,7 @@ router.post("/full-shortURL", (req, res) => {
         });
         newUrl
           .save()
-          .then((Url) => res.json(Url))
+          .then((Url) => res.json(Url.shorturl))
           .catch((err) => console.log("second last"));
       }
     });
