@@ -79,14 +79,8 @@ router.get("/short-fullURL", (req, res) => {
   }
   console.log(num);
   Url.findOne({ number: num })
-    .then((data) => {
-      if (data) {
-        (data) => res.json(data.fullurl);
-      }else{
-        console.log("data not found");
-      }
-    })
-    .catch((err) => console.log(err));
+    .then((Url) => res.json(Url.fullurl))
+    .catch((err) => console.log("data not found"));
 });
 
 module.exports = router;
