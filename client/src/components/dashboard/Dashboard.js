@@ -3,12 +3,14 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {givefullurl} from "../../actions/authActions";
+import {givenshorturl} from "../../actions/authActions";
 
 class Fullurl extends Component {
   constructor() {
     super();
     //Local state
     this.state = {
+      shorturl: "",
       fullurl: "",
       errors: {},
     };
@@ -24,10 +26,18 @@ class Fullurl extends Component {
   onSubmit(e) {
     e.preventDefault();
     const fullurl = {
-      fullurl: this.state.fullurl
+      fullurl: this.state.fullurl,
     };
 
     this.props.givefullurl(fullurl);
+  }
+  onSubmit2(e) {
+    e.preventDefault();
+    const shorturl = {
+      shorturl: this.state.shorturl,
+    };
+
+    this.props.giveshorturl(shorturl);
   }
   // componentDidMount() {
   //   if (this.props.auth.isAuthenticated) {
@@ -69,22 +79,24 @@ class Fullurl extends Component {
                     <div className="invalid-feedback">{errors.fullurl}</div>
                   )}
                 </div>
-                <div id="shorturl"></div>
+                {/* <div id="shorturl"></div> */}
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
-              <form noValidate onSubmit={this.onSubmit}>
+              <form noValidate onSubmit2={this.onSubmit}>
                 <div className="form-group">
-                  <input id = "shorturl"
+                  <div
+                    id="shorturl"
                     type="String"
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.shorturl,
                     })}
                     name="shorturl"
-                  />
+                  ></div>
                   {errors.fullurl && (
                     <div className="invalid-feedback">{errors.fullurl}</div>
                   )}
                 </div>
+                <div id = "fullurl"></div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

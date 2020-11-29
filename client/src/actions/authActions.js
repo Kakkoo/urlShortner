@@ -46,7 +46,22 @@ export const givefullurl = (fullurl) => (dispatch) => {
       console.log(res);
 
       document.getElementById("shorturl").innerHTML =  `localhost:3000/`+ res.data.shorturl;
-      //document.getElementById("demo").innerHTML = "Paragraph changed!";
+      
+    })
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        payload: err.response.data,
+      })
+    );
+};
+export const giveshorturl = (shorturl) => (dispatch) => {
+  axios
+    .get("/api/urlroutes/short-fullURL", shorturl)
+    .then((res) => {
+      console.log(res);
+
+      document.getElementById("fullurl").innerHTML = res.data.fullurl;
     })
     .catch((err) =>
       dispatch({
