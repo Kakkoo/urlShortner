@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import jwt_decode from "jwt-decode";
+//import jwt_decode from "jwt-decode";
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
