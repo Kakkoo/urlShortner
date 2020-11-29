@@ -12,7 +12,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import store from "./store";
 import { logoutUser } from "./actions/authActions";
-import setAuthToken from "./utils/setAuthToken";
+import Dashboard from "./components/dashboard/Dashboard";
+
 import { SET_USER } from "./actions/types";
 import PrivateRoute from "./components/common/PrivateRoute";
 if (localStorage.jwtToken) {
@@ -47,6 +48,9 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
             <Footer />
           </div>
         </Router>
