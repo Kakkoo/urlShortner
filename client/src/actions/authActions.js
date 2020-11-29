@@ -55,7 +55,7 @@ export const givefullurl = (fullurl) => (dispatch) => {
       })
     );
 };
-export const giveshorturl = (shorturl) => (dispatch) => {
+export const givenshorturl = (shorturl) => (dispatch) => {
   axios
     .get("/api/urlroutes/short-fullURL", shorturl)
     .then((res) => {

@@ -37,7 +37,7 @@ class Fullurl extends Component {
       shorturl: this.state.shorturl,
     };
 
-    this.props.giveshorturl(shorturl);
+    this.props.givenshorturl(shorturl);
   }
   // componentDidMount() {
   //   if (this.props.auth.isAuthenticated) {
@@ -107,15 +107,15 @@ class Fullurl extends Component {
   }
 }
 
-Fullurl.propTypes = {
-  givefullurl: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-};
+// Fullurl.propTypes = {
+//   givefullurl: PropTypes.func.isRequired,
+//   errors: PropTypes.object.isRequired,
+//   auth: PropTypes.object.isRequired,
+// };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { givefullurl })(Fullurl);
+export default connect(mapStateToProps, { givefullurl }, {givenshorturl})(Fullurl);
