@@ -43,7 +43,7 @@ export const givefullurl = (fullurl) => (dispatch) => {
   axios
     .post("/api/urlroutes/full-shortURL", fullurl)
     .then((res) => {
-     document.getElementById("shorturl").innerHTML = res.shorturl; 
+     document.getElementById("shorturl").innerHTML = res; 
     })
     .catch((err) =>
       dispatch({
