@@ -3,14 +3,12 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {givefullurl} from "../../actions/authActions";
-import {givenshorturl} from "../../actions/authActions";
 
 class Fullurl extends Component {
   constructor() {
     super();
     //Local state
     this.state = {
-      shorturl: "",
       fullurl: "",
       errors: {},
     };
@@ -26,18 +24,10 @@ class Fullurl extends Component {
   onSubmit(e) {
     e.preventDefault();
     const fullurl = {
-      fullurl: this.state.fullurl,
+      fullurl: this.state.fullurl
     };
 
     this.props.givefullurl(fullurl);
-  }
-  onSubmit2(e) {
-    e.preventDefault();
-    const shorturl = {
-      shorturl: this.state.shorturl,
-    };
-
-    this.props.givenshorturl(shorturl);
   }
   // componentDidMount() {
   //   if (this.props.auth.isAuthenticated) {
@@ -62,7 +52,9 @@ class Fullurl extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Too Big, make it short</h1>
-              <p className="lead text-center">Enter fullurl</p>
+              <p className="lead text-center">
+                Enter fullurl
+              </p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -79,24 +71,7 @@ class Fullurl extends Component {
                     <div className="invalid-feedback">{errors.fullurl}</div>
                   )}
                 </div>
-                {/* <div id="shorturl"></div> */}
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-              <form noValidate onSubmit2={this.onSubmit}>
-                <div className="form-group">
-                  <div
-                    id="shorturl"
-                    type="String"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.shorturl,
-                    })}
-                    name="shorturl"
-                  ></div>
-                  {errors.fullurl && (
-                    <div className="invalid-feedback">{errors.fullurl}</div>
-                  )}
-                </div>
-                <div id = "fullurl"></div>
+                <div id="shorturl"></div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
@@ -107,15 +82,15 @@ class Fullurl extends Component {
   }
 }
 
-// Fullurl.propTypes = {
-//   givefullurl: PropTypes.func.isRequired,
-//   errors: PropTypes.object.isRequired,
-//   auth: PropTypes.object.isRequired,
-// };
+Fullurl.propTypes = {
+  givefullurl: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { givefullurl }, {givenshorturl})(Fullurl);
+export default connect(mapStateToProps, { givefullurl })(Fullurl);
