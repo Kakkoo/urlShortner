@@ -23,6 +23,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+img {
+  width: 100%;
+}
+.landing {
+  position: relative;
+  background: url('./img/Login.JS.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
 
 .App-link {
   color: #61dafb;
