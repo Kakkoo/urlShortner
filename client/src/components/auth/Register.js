@@ -1,38 +1,50 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import classnames from 'classnames';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import classnames from "classnames";
+import { registerUser } from "../../actions/authActions";
 
- class Register extends Component {
-   constructor(){
-     super();
-     this.state = {
-       name: '',
-       email: '',
-       password: '',
-       password2: '',
-       errors: {}
-     };
-     this.onChange = this.onChange.bind(this);
-     this.onSubmit = this.onSubmit.bind(this);
-   }
-   onChange(e){
-     this.setState({[e.target.name]: e.target.value});
-   }
-   onSubmit(e){
-     e.preventDefault();
-     const newUser = {
-       name: this.state.name,
-       email: this.state.email,
-       password: this.state.password,
-       password2: this.state.password2
-     };
-     axios.post('./api/users/register', newUser)
-     .then(res => console.log(res.data))
-     .catch(err => this.setState({errors: err.response.data}));
-   }
+class Register extends Component {
+  constructor() {
+    super();
+    //Local state
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      errors: {},
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+    };
+
+    this.props.registerUser(newUser, this.props.history);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   render() {
-    const {errors} = this.state;
+    const { errors } = this.state;
+
     return (
       <div className="register">
         <div className="container">
@@ -116,4 +128,14 @@ import classnames from 'classnames';
     );
   }
 }
-export default Register;
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);
