@@ -39,7 +39,19 @@ export const loginUser = (userData) => (dispatch) => {
       })
     );
 };
-
+export const givefullurl = (fullurl) => (dispatch) => {
+  axios
+    .post("/api/urlroutes/full-shortURL", fullurl)
+    .then((res) => {
+     document.getElementById("shorturl").innerHTML = res.shorturl; 
+    })
+    .catch((err) =>
+      dispatch({
+        type: SET_ERROR,
+        payload: err.response.data,
+      })
+    );
+};
 export const logoutUser = () => (dispatch) => {
   //Remove token from ls
   localStorage.removeItem("jwtToken");
