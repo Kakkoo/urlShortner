@@ -52,9 +52,7 @@ class Fullurl extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Too Big, make it short</h1>
-              <p className="lead text-center">
-                Enter fullurl
-              </p>
+              <p className="lead text-center">Enter fullurl</p>
               <form noValidate onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -72,6 +70,21 @@ class Fullurl extends Component {
                   )}
                 </div>
                 <div id="shorturl"></div>
+                <input type="submit" className="btn btn-info btn-block mt-4" />
+              </form>
+              <form noValidate onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <input id = "shorturl"
+                    type="String"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.shorturl,
+                    })}
+                    name="shorturl"
+                  />
+                  {errors.fullurl && (
+                    <div className="invalid-feedback">{errors.fullurl}</div>
+                  )}
+                </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

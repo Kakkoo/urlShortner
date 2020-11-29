@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 //import jwt_decode from "jwt-decode";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
+import CRedirect from "./components/layout/CRedirect";
 import Footer from "./components/layout/Footer";
 import setAuthToken from "./utils/setAuthToken";
 import Register from "./components/auth/Register";
@@ -45,7 +46,8 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={CRedirect} />
+            <Route exact path="/landing" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Switch>

@@ -44,7 +44,9 @@ export const givefullurl = (fullurl) => (dispatch) => {
     .post("/api/urlroutes/full-shortURL", fullurl)
     .then((res) => {
       console.log(res);
-     document.getElementById("shorturl").innerHTML = res.shorturl; 
+
+      document.getElementById("shorturl").innerHTML =  `localhost:3000/`+ res.data.shorturl;
+      //document.getElementById("demo").innerHTML = "Paragraph changed!";
     })
     .catch((err) =>
       dispatch({
