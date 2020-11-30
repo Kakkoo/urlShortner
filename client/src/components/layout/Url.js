@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {giveshorturl} from "../../actions/authActions";
-const shorturl =  window.location.pathname;
+let Shorturl =  window.location.pathname;
+const shorturl = Shorturl.slice(5);
 console.log(`clientshorturl + ${shorturl}`);
 class Url extends Component {
   constructor() {
