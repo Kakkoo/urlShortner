@@ -12,7 +12,7 @@ class Url extends Component {
       
       //shorturl: window.location.href
     };
-    this.onload = this.onload.bind(this);
+   // this.onload = this.onload.bind(this);
   }
   // onload(e) {
   //   e.preventDefault();
@@ -26,9 +26,9 @@ class Url extends Component {
    
     return (
       <div>
-        <div onLoad={this.props.giveshorturl(shorturl)}></div>
         <div id="fullurl"></div>
         <div>"Wait for right url"</div>
+        <div onLoad={giveshorturl(shorturl)}></div>
       </div>
     );
   }
