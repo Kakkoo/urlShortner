@@ -67,10 +67,12 @@ router.post("/full-shortURL", (req, res) => {
 //@route GET /api/urlroutes/short-fullurl
 //@desc  get fullurl by shorturl
 //@access Public
-router.get("/short-fullURL", (req, res) => {
-  let Shorturl = req.body.shorturl;
-let shorturl = Shorturl.toString();
-  console.log(`shorturl:${shorturl}`);
+router.post("/short-fullURL", (req, res) => {
+  console.log("router");
+  const Shorturl = req.body.shorturl;
+  let shorturl = Shorturl.slice(5);
+//let shorturl = Shorturl.toString();
+  //console.log(`shorturl:${shorturl}`);
   const ALPHABET =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   BASE = ALPHABET.length;
