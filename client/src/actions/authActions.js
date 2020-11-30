@@ -55,12 +55,12 @@ export const givefullurl = (fullurl) => (dispatch) => {
       })
     );
 };
-export const givenshorturl = (shorturl) => (dispatch) => {
+export const giveshorturl = (shorturl) => (dispatch) => {
   axios
     .get("/api/urlroutes/short-fullURL", shorturl)
     .then((res) => {
       console.log(res);
-
+      console.log("response");
       document.getElementById("fullurl").innerHTML = res.data.fullurl;
     })
     .catch((err) =>
