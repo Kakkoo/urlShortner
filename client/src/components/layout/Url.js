@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-//import classnames from "classnames";
-//import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {giveshorturl} from "../../actions/authActions";
-//import { Link } from "react-router-dom";
 const shorturl =  window.location.pathname;
+console.log(`clientshorturl${shorturl}`);
 class Url extends Component {
   constructor() {
     super();
@@ -27,6 +25,7 @@ class Url extends Component {
    
     return (
       <div>
+        <div onLoad={this.props.giveshorturl(shorturl)}></div>
         <div id="fullurl"></div>
         <div>"Wait for right url"</div>
       </div>
