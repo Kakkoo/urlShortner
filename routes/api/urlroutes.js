@@ -70,7 +70,7 @@ router.post("/full-shortURL", (req, res) => {
 router.post("/short-fullURL", (req, res) => {
   console.log("router");
   const Shorturl = req.body.shorturl;
-  let shorturl = Shorturl.slice(5);
+  let shorturl = Shorturl.slice(21);
 //let shorturl = Shorturl.toString();
   //console.log(`shorturl:${shorturl}`);
   const ALPHABET =
