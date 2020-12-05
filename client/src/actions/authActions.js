@@ -45,8 +45,8 @@ export const givefullurl = (fullurl) => (dispatch) => {
     .then((res) => {
       console.log(res);
 
-      document.getElementById("shorturl").innerHTML =  `localhost:3000/`+ res.data.shorturl;
-      
+      document.getElementById("shorturl").innerHTML =
+        `localhost:3000/` + res.data.shorturl;
     })
     .catch((err) =>
       dispatch({
@@ -55,20 +55,23 @@ export const givefullurl = (fullurl) => (dispatch) => {
       })
     );
 };
-export const giveshorturl = (shorturl) => (dispatch) => {
+export const giveshorturl = (shorturl, history) => (dispatch) => {
   axios
-    .get("/api/urlroutes/short-fullURL", shorturl)
-    .then((res) => {
-      console.log(res);
-      console.log("response");
-      document.getElementById("fullurl").innerHTML = res.data.fullurl;
-    })
-    .catch((err) =>
-      dispatch({
-        type: SET_ERROR,
-        payload: err.response.data,
-      })
-    );
+    .get("/api/urlroutes/short-fullURL/" + shorturl)
+    .then((res) => history.push("res.data.fullurl"))
+    // .then((res) => {
+    //   console.log(res);
+    //   console.log("inside giveshorturl -" + shorturl);
+
+    //   document.getElementById("fullurl").innerHTML = res.data.fullurl;
+    //   console.log("after getelementby id");
+    // })
+    .catch((err) => err);
+  //  =>
+  //   dispatch({
+  //     type: SET_ERROR,
+  //     payload: err.response.data,
+  //   })
 };
 export const logoutUser = () => (dispatch) => {
   //Remove token from ls
