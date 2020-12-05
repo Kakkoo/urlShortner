@@ -58,7 +58,12 @@ export const givefullurl = (fullurl) => (dispatch) => {
 export const giveshorturl = (shorturl, history) => (dispatch) => {
   axios
     .get("/api/urlroutes/short-fullURL/" + shorturl)
-    .then((res) => history.push("res.data.fullurl"))
+    .then((res) =>
+     //history.push(res.data.fullurl)
+     { const C = res.data.fullurl;
+       window.location.href = C;
+    }
+     )
     // .then((res) => {
     //   console.log(res);
     //   console.log("inside giveshorturl -" + shorturl);
