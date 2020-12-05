@@ -46,8 +46,8 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route  path="dashboard/" component={Url} />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/:shorturl" component={Url} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Switch>

@@ -69,8 +69,8 @@ router.post("/full-shortURL", (req, res) => {
 //@access Public
 router.post("/short-fullURL", (req, res) => {
   console.log("router");
-  const Shorturl = req.body.shorturl;
-  let shorturl = Shorturl.slice(21);
+  const shorturl = req.body.shorturl;
+  //let shorturl = Shorturl.slice(21);
 //let shorturl = Shorturl.toString();
   //console.log(`shorturl:${shorturl}`);
   const ALPHABET =
