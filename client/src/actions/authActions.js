@@ -55,16 +55,19 @@ export const givefullurl = (fullurl) => (dispatch) => {
       })
     );
 };
-export function giveshorturl(shorturl) {
+export const giveshorturl = (shorturl, history) => (dispatch) => {
   axios
     .get("/api/urlroutes/short-fullURL/" + shorturl)
-    .then((res) => {
-      const C = res.data.fullurl;
-      window.location.href = C;
+    .then((res) =>
+    
+     { const C = res.data.fullurl;
+       window.location.href = C;
     }
-    )
+     )
+   
     .catch((err) => err);
-}
+ 
+};
 export const logoutUser = () => (dispatch) => {
   //Remove token from ls
   localStorage.removeItem("jwtToken");
