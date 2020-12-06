@@ -46,7 +46,7 @@ export const givefullurl = (fullurl) => (dispatch) => {
       console.log(res);
 
       document.getElementById("shorturl").innerHTML =
-        `localhost:3000/` + res.data.shorturl;
+        `https://secure-springs-79301.herokuapp.com/` + res.data.shorturl;
     })
     .catch((err) =>
       dispatch({
